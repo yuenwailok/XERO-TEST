@@ -3,7 +3,7 @@ html {
 }
 
 body {
-	background-color:#a9ff54;
+	background-color:#e3f97f;
 	height:100%;
 	width:100%;
 }
@@ -56,16 +56,23 @@ td {
 }
 
 .box {
-	width:385px;
 	background-color:#cfa444;
 	justify-content: center;
-	display:flex;
+	display:inline-flex;
+	flex-direction:column;
 	text-align:center;
 	margin:auto;
 }
 
+.box:hover {
+	background-color:#b58d36;
+}
+
+.inline {
+}
+
 .round {
-	background-color:#a9ff54;
+	background-color:#e3f97f;
 	margin:5px;
 	text-align:center;
 	border-radius:50%;
@@ -82,10 +89,15 @@ td {
 	background-color:white;
 }
 
+.border {
+	border:2px solid;
+}
+
 .greytext {
 	background-color:gray;
 	width:300px;
 	border-radius:10px;
+	border:2px solid;
 }
 
 .blacktext {
@@ -93,12 +105,14 @@ td {
 	color:white;
 	width:300px;
 	border-radius:10px;
+	border:white 2px solid;
 }
 
 .whitetext {
 	background-color:white;
 	width:300px;
 	border-radius:10px;
+	border:2px solid;
 }
 
 .marcen {
@@ -107,7 +121,6 @@ td {
 
 @media screen and (max-width:376px)  {
 	.box {
-	width:280px;
 	}
 	
 	.round {
