@@ -6,6 +6,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var ROW = 7;
+var COLMUN = 6;
+
 var CellBoard = function (_React$Component) {
     _inherits(CellBoard, _React$Component);
 
@@ -15,18 +18,13 @@ var CellBoard = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (CellBoard.__proto__ || Object.getPrototypeOf(CellBoard)).call(this, props));
 
         _this.state = {
-            boardCell: [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]],
             finished: false,
             cellBoard: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
         };
         _this.changeCellValues = [];
         _this.move = 0;
-        for (var i = 0; i < 7; i++) {
-            var arr = [];
-            for (var j = 0; j < 6; j++) {
-                arr.push(_this.changeCellValue.bind(_this, i, j));
-            }
-            _this.changeCellValues.push(arr);
+        for (var i = 0; i < ROW; i++) {
+            _this.changeCellValues.push(_this.changeCellValue.bind(_this, i));
         }
 
         _this.winMessage = _this.winMessage.bind(_this);
@@ -197,7 +195,11 @@ var CellBoard = function (_React$Component) {
         }
     }, {
         key: "changeCellValue",
-        value: function changeCellValue(row, colmun) {
+        value: function changeCellValue(row) {
+
+            if (this.state.finished) {
+                return;
+            }
 
             for (var i = 5; i >= 0; i--) {
                 if (this.state.cellBoard[row][i] === 0) {
@@ -228,9 +230,6 @@ var CellBoard = function (_React$Component) {
                 }
             }
         }
-
-        //<span onClick={this.changeCellValues[rowIndex][colmunIndex]}>{cell}</span>
-
     }, {
         key: "render",
         value: function render() {
@@ -239,9 +238,9 @@ var CellBoard = function (_React$Component) {
             var arr = this.state.cellBoard.map(function (item, rowIndex) {
                 return React.createElement(
                     "div",
-                    { onClick: !_this2.state.finished ? _this2.changeCellValues[rowIndex][0] : function () {}, className: "box" },
+                    { key: rowIndex, onClick: _this2.changeCellValues[rowIndex], className: "box" },
                     item.map(function (cell, colmunIndex) {
-                        return React.createElement("div", { className: "round " + (cell === 1 ? "white" : cell === 2 ? "black" : "") });
+                        return React.createElement("div", { key: colmunIndex, className: "round " + (cell === 1 ? "white" : cell === 2 ? "black" : "") });
                     })
                 );
             });
