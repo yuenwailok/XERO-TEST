@@ -29,10 +29,21 @@ var CellBoard = function (_React$Component) {
         }
 
         _this.winMessage = _this.winMessage.bind(_this);
+        _this.resetGame = _this.resetGame.bind(_this);
         return _this;
     }
 
     _createClass(CellBoard, [{
+        key: "resetGame",
+        value: function resetGame() {
+            var arr = [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]];
+            this.setState({
+                boardCell: [].concat(arr),
+                finished: false
+            });
+            this.move = 0;
+        }
+    }, {
         key: "playerName",
         value: function playerName(move) {
             if (move % 2 === 0) {
@@ -247,7 +258,7 @@ var CellBoard = function (_React$Component) {
                     { className: "center margintop" },
                     React.createElement(
                         "button",
-                        null,
+                        { onClick: this.resetGame },
                         "Reset Game"
                     )
                 )
