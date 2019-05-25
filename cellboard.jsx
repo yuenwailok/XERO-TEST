@@ -41,7 +41,6 @@ class CellBoard extends React.Component {
             for (let j = 0; j < arr[i].length; j++) {
                 if (arr[i][j] === value) {
                     count = 1;
-                    //check for dia1
                     let rowIndex = i + 1;
                     let columnIndex = j + 1;
                     while (rowIndex < ROW && columnIndex < COLUMN) {
@@ -65,7 +64,6 @@ class CellBoard extends React.Component {
                     count = 1;
                     rowIndex = i + 1;
                     columnIndex = j - 1;
-                    //check for dia2
                     while (rowIndex < ROW && columnIndex >= 0) {
                         if (arr[rowIndex][columnIndex] === value) {
 
@@ -90,13 +88,13 @@ class CellBoard extends React.Component {
     }
 
     win(arr, number) {
-        return this.move >= 7 && (this.checkDiagonal(arr, number) ||
-            this.checkHo(arr, number) ||
-            this.checkVer(arr, number));
+        return this.move >= MATCH * 2 - 1 && (this.checkDiagonal(arr, number) ||
+            this.checkHorizontal(arr, number) ||
+            this.checkVertical(arr, number));
     }
 
     winMessage() {
-        if (this.move >= 42) {
+        if (this.move >= ROW * COLUMN) {
             return <p className="greytext margintop">It's a tie, no one wins!</p>
         }
         if (this.win(this.state.cellBoard, 1)) {
@@ -110,7 +108,7 @@ class CellBoard extends React.Component {
         return <p className={this.move % 2 === 0 ? "whitetext margintop" : "blacktext margintop"}>{this.playerName(this.move)}, please select a column</p>;
     }
 
-    checkVer(arr, value) {
+    checkVertical(arr, value) {
         let count = 0;
         for (let i = 0; i < COLUMN; i++) {
             for (let j = 0; j < ROW; j++) {
@@ -130,8 +128,8 @@ class CellBoard extends React.Component {
 
         return false;
     }
-
-    checkHo(arr, value) {
+//horizontal
+    checkHorizontal(arr, value) {
         let count = 0;
         for (let i = 0; i < arr.length; i++) {
             for (let j = 0; j < arr[i].length; j++) {
