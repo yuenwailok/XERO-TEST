@@ -2,6 +2,14 @@ html {
 	height:100%;
 }
 
+.margintop {
+	margin-top:10px;
+}
+
+a:hover {
+	text-decoration:none;
+}
+
 body {
 	background-color:#e3f97f;
 	height:100%;
@@ -9,27 +17,8 @@ body {
 }
 
 #cellboard {
-	z-index:1;
 	height:100%;
 	margin:auto;
-}
-
-table {
-	position: fixed; /* or absolute */
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width:50% !important;
-	height:50%;
-	border:1px solid;
-}
-
-.centere {
-	position: fixed; /* or absolute */
-	top: 40%;
-	left: 50%;
-	transform: translate(-50%, -40%);
-	
 }
 
 .margintop {
@@ -38,10 +27,6 @@ table {
 
 .center {
 	text-align:center;
-}
-
-td {
-	border:1px solid;
 }
 
 .flex {
@@ -66,9 +51,6 @@ td {
 
 .box:hover {
 	background-color:#b58d36;
-}
-
-.inline {
 }
 
 .round {
@@ -119,22 +101,13 @@ td {
 }
 
 @media screen and (max-width:376px)  {
-	.box {
-	}
 	
 	.round {
 		width:30px;
 		height:30px;
 	}
 	
-	.center {
-	}
 }
 
 @media screen and (max-height:400px)  {
-	
-	
-	.center {
-		
-	}
 }
