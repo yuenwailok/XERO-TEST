@@ -7,7 +7,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var ROW = 7;
-var COLMUN = 6;
+var COLUMN = 6;
+var MATCH = 4;
 
 var CellBoard = function (_React$Component) {
     _inherits(CellBoard, _React$Component);
@@ -51,49 +52,47 @@ var CellBoard = function (_React$Component) {
             return "Player 2";
         }
     }, {
-        key: "checkDia",
-        value: function checkDia(arr, value) {
+        key: "checkDiagonal",
+        value: function checkDiagonal(arr, value) {
             var count = 0;
             for (var i = 0; i < arr.length; i++) {
                 for (var j = 0; j < arr[i].length; j++) {
                     if (arr[i][j] === value) {
                         count = 1;
-                        //check for dia1
-                        var ho = i + 1;
-                        var ri = j + 1;
-                        while (ho < 7 && ri < 6) {
-                            if (arr[ho][ri] === value) {
+                        var rowIndex = i + 1;
+                        var columnIndex = j + 1;
+                        while (rowIndex < ROW && columnIndex < COLUMN) {
+                            if (arr[rowIndex][columnIndex] === value) {
 
                                 count++;
-                                if (count === 4) {
+                                if (count === MATCH) {
                                     return true;
                                 }
-                                ho++;
-                                ri++;
+                                rowIndex++;
+                                columnIndex++;
                             } else {
-                                ho = 0;
-                                ri = 0;
+                                rowIndex = 0;
+                                columnIndex = 0;
                                 count = 0;
                                 break;
                             }
                         }
 
                         count = 1;
-                        ho = i + 1;
-                        ri = j - 1;
-                        //check for dia2
-                        while (ho < 7 && ri >= 0) {
-                            if (arr[ho][ri] === value) {
+                        rowIndex = i + 1;
+                        columnIndex = j - 1;
+                        while (rowIndex < ROW && columnIndex >= 0) {
+                            if (arr[rowIndex][columnIndex] === value) {
 
-                                ho++;
-                                ri--;
+                                rowIndex++;
+                                columnIndex--;
                                 count++;
-                                if (count === 4) {
+                                if (count === MATCH) {
                                     return true;
                                 }
                             } else {
-                                ho = 0;
-                                ri = 0;
+                                rowIndex = 0;
+                                columnIndex = 0;
                                 count = 1;
                                 break;
                             }
@@ -106,12 +105,12 @@ var CellBoard = function (_React$Component) {
     }, {
         key: "win",
         value: function win(arr, number) {
-            return this.move >= 7 && (this.checkDia(arr, number) || this.checkHo(arr, number) || this.checkVer(arr, number));
+            return this.move >= MATCH * 2 - 1 && (this.checkDiagonal(arr, number) || this.checkHorizontal(arr, number) || this.checkVertical(arr, number));
         }
     }, {
         key: "winMessage",
         value: function winMessage() {
-            if (this.move >= 42) {
+            if (this.move >= ROW * COLUMN) {
                 return React.createElement(
                     "p",
                     { className: "greytext margintop" },
@@ -148,22 +147,22 @@ var CellBoard = function (_React$Component) {
                 "p",
                 { className: this.move % 2 === 0 ? "whitetext margintop" : "blacktext margintop" },
                 this.playerName(this.move),
-                ", please select a row"
+                ", please select a column"
             );
         }
     }, {
-        key: "checkVer",
-        value: function checkVer(arr, value) {
+        key: "checkVertical",
+        value: function checkVertical(arr, value) {
             var count = 0;
-            for (var i = 0; i < 6; i++) {
-                for (var j = 0; j < 7; j++) {
+            for (var i = 0; i < COLUMN; i++) {
+                for (var j = 0; j < ROW; j++) {
                     if (arr[j][i] === value) {
                         count++;
                     } else {
                         count = 0;
                     }
 
-                    if (count === 4) {
+                    if (count === MATCH) {
                         return true;
                     }
                 }
@@ -172,9 +171,11 @@ var CellBoard = function (_React$Component) {
 
             return false;
         }
+        //horizontal
+
     }, {
-        key: "checkHo",
-        value: function checkHo(arr, value) {
+        key: "checkHorizontal",
+        value: function checkHorizontal(arr, value) {
             var count = 0;
             for (var i = 0; i < arr.length; i++) {
                 for (var j = 0; j < arr[i].length; j++) {
@@ -184,13 +185,12 @@ var CellBoard = function (_React$Component) {
                         count = 0;
                     }
 
-                    if (count === 4) {
-                        return true;
-                    }
+                    if (count === MATCH) return true;
                 }
-
-                count = 0;
             }
+
+            count = 0;
+
             return false;
         }
     }, {
@@ -201,7 +201,7 @@ var CellBoard = function (_React$Component) {
                 return;
             }
 
-            for (var i = 5; i >= 0; i--) {
+            for (var i = COLUMN - 1; i >= 0; i--) {
                 if (this.state.cellBoard[row][i] === 0) {
                     var arr = this.state.cellBoard.map(function (row) {
                         return row.map(function (colmun) {
