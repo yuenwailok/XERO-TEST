@@ -1,19 +1,17 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="cellboardstyle.css">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<title>Connect 4 game board by yuenwailok</title>
+    <meta charset="UTF-8">
+    <meta name="xero-client-id" content="961E502F5982463B888CD9B66D530373">
+    <meta name="xero-scopes" content="offline_access accounting.transactions openid profile email accounting.contacts accounting.settings">
+    <meta name="xero-redirect-uri" content="https://yuenwailok.github.io/Connect4/">
+    <!-- optional -->
+    <meta name="xero-state" content="YOUR_REQUEST_STATE">
+    <title>My App</title>
 </head>
-
-	<body>
-	<h5 class="center margintop">Connect 4 by <a href="https://github.com/yuenwailok/Connect4">yuenwailok</a></h5>
-	<div id="cellboard"></div>
-	</body>
+<body>
+    <span data-xero-sso data-label="Sign in with Xero"></span>
+    <script src="https://edge.xero.com/platform/sso/xero-sso.js" async defer></script>
+</body>
 </html>
-
-<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-<script src="cellboard.js"></script>
