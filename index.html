@@ -7,11 +7,27 @@
     <meta name="xero-scopes" content="offline_access accounting.transactions openid profile email accounting.contacts accounting.settings">
     <meta name="xero-redirect-uri" content="https://yuenwailok.github.io/XERO-TEST/">
     <!-- optional -->
-    <meta name="xero-state" content="YOUR_REQUEST_STATE">
     <title>My App</title>
 </head>
 <body>
     <span data-xero-sso data-label="Sign in with Xero"></span>
     <script src="https://edge.xero.com/platform/sso/xero-sso.js" async defer></script>
 </body>
+    <script>
+        
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function() {
+  if(this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("GET", "https://api.xero.com/connections");
+xhr.setRequestHeader("Authorization", "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjFDQUY4RTY2NzcyRDZEQzAyOEQ2NzI2RkQwMjYxNTgxNTcwRUZDMTkiLCJ0eXAiOiJKV1QiLCJ4NXQiOiJISy1PWm5jdGJjQW8xbkp2MENZVmdWY09fQmsifQ.eyJuYmYiOjE1ODUyODgyNTEsImV4cCI6MTU4NTI5MDA1MSwiaXNzIjoiaHR0cHM6Ly9pZGVudGl0eS54ZXJvLmNvbSIsImF1ZCI6Imh0dHBzOi8vaWRlbnRpdHkueGVyby5jb20vcmVzb3VyY2VzIiwiY2xpZW50X2lkIjoiMkVDMzdBQUFEQ0RCNDZERjk2NjgyNDQ4NkZBMkJGNzgiLCJzdWIiOiI2ODUxN2RiMDFjZDA1ZmEwYjI2ZjdjZjJhMTBmZDBmYyIsImF1dGhfdGltZSI6MTU4NTI4ODIzOCwieGVyb191c2VyaWQiOiIxYTc2NWY5Yy02NTYzLTQ0YjktOWFjMS1jODVmOWM3ZDAxOGEiLCJnbG9iYWxfc2Vzc2lvbl9pZCI6ImFkZWYxNWU3ZjExMDQ5ZmQ4YTljZTgyMTBmZDE5ZjJhIiwianRpIjoiMjQyMTAzMmJjNjFjMDdkNmE3N2JkNmQ5MWYyNzE2ZDQiLCJzY29wZSI6WyJlbWFpbCIsInByb2ZpbGUiLCJvcGVuaWQiLCJhY2NvdW50aW5nLnNldHRpbmdzIiwiYWNjb3VudGluZy50cmFuc2FjdGlvbnMiLCJhY2NvdW50aW5nLmNvbnRhY3RzIiwib2ZmbGluZV9hY2Nlc3MiXX0.icIl6wNJoxE1OKtvoqJYJFNfxzmKf0fuaKgAiO71SDmcnhJHNF8SMHxU1-5hnOqJtO37RCThk5eeNmhF-m9lA72mcHju2FO7JjDIDPKS2jtyr4JHbfcE17PTtFPkSKbywlWQa47u2_IsTzde2bTaezALzXlAqP2GLyc30Nt6J6WV8vGa5NvDeDzP9FcuYiHD_CsRksNUB7MO4pW_nvKLObqKkT0m21DIhiXNsRXQNObP8WK35VBSpVOK3oQGQnmANjqfliEJ5r97vrCbWh9Nz7n0FTq_7vmguk4Wd8bNZwtSQKfHRIYBAQx2TMwe46Rek6hSa2SmdOiulwq0QPs0PQ");
+xhr.setRequestHeader("Cookie", "bm_sz=6FE241C015987A2F2665F1C1FE176EDB~YAAQJvPOFwNAGRlxAQAA9S5mGgcJWdWpZJCe0IQwaC4nYxeePcwSoGAUAh2pWKKvorR2Yx14DWTABUAVZbOpvJCeEUQRA9t8d0LziJb34+FgmQuRHajLn1NoT92M0+MyS3jVj8Ok67qA6FmFck4vZSbDflXSaSior2R7ROO1n+fivADeIuysel/kZI+cSQ==; _abck=621F56D9413609BCD926875742EF3DFB~0~YAAQJvPOFw1AGRlxAQAAHjJmGgMDlzb5HB4YfB386FlO9hDuv6GXfswVXFwji4YnFo/XmOUZ9kCEKIr9MKIMIhlp/yI1AXJ3TWjKBFhe9UEYG05iFrqk+Ja+uBh8E45wIfuHQ+w8Rhz4Ln0Sp59KHw8GtG1W3kLiBwtTB26vc58nb53L7pSlPKRoaaPu7M04Q619ifukUw29oY1ybGK8443m2O6NftQgbU+Zp5v2RrttCKuNtRCaNyq+rTk6onptfRNdhxlJJKmDjxsP9SmfwfQdBZ8tJNnW/zu1yu4lkwFYcVsO/JrBAKG42Rui5DBiAci2DII=~-1~-1~-1; _ga=GA1.2.543451032.1585285915; _gid=GA1.2.377663330.1585285915; coveo_visitorId=2bffc31f-2623-477d-a20c-b57875dab0f0; ak_bmsc=5994615C39519AFC44AA28882A79B1BA17CEF326605A0000CC8A7D5EBAC4AE04~plyaXFWSTBeal92OfVvit7mGuwWNo49/cb4UuMMZ7J9FZnuKnfJvS4BrLfvkcYA+Y5/XLe4QS3jMNgMmZTo2/zeyGr+irZDNIKq2URA4E/KbRoVKLXrNg5BMCok1erZ2ti1EOqdxOz5zQrPUipSS1L0ztavU6LmCBKXdkibpOm7g18pAvl5zZaPPWKsdMQnjzBn6HVRCZ62LsDbhOCbNV/UwqNJpqy7iPMweA/0zMjQKZLoqFLcKzkglg1/uGli06G; bm_sv=79258B5CE8C97BE3E00BC0F8BAD025E0~/eZKq8zfDdI43krV63/orAwc2GLWoCe/U0Bw+pngdymngTRVw6UJHOzOOPc69/T28Lc//gdkLBZWqIO8oWNOlqq4NM2r1p/ZpU9Co8mGQ+4+fVoU1JlJjyg5rEi3mugUgdaxnt8QxtmfgM0ygVE0+FEBUwIJF/7NpF426uHS/zc=");
+
+xhr.send();
+    </script>
 </html>
