@@ -17,6 +17,6 @@
         xhr.open("POST", "https://identity.xero.com/connect/token", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.setRequestHeader("authorization","Basic " + base64encode("961E502F5982463B888CD9B66D530373" + ":" + "02sf7SCSignGR9ZAzoxjjznEahvGJDoRSkiZjb_9aiDRCwvv"));
-        
+        xhr.send("grant_type=authorization_code&code=xxxxxx&redirect_uri=https://yuenwailok.github.io/XERO-TEST/");      
     </script>
 </html>
