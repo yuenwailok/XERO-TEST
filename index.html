@@ -13,6 +13,10 @@
     <script src="https://edge.xero.com/platform/sso/xero-sso.js" async defer></script>
 </body>
     <script>
-        console.log(code);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://identity.xero.com/connect/token", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.setRequestHeader("authorization","Basic " + base64encode("961E502F5982463B888CD9B66D530373" + ":" + "02sf7SCSignGR9ZAzoxjjznEahvGJDoRSkiZjb_9aiDRCwvv"));
+        
     </script>
 </html>
