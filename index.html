@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="xero-client-id" content="961E502F5982463B888CD9B66D530373">
+    <meta name="xero-client-id" content="41073DCE6A4E41D2888231B7F627CA1E">
     <meta name="xero-scopes" content="offline_access accounting.transactions openid profile email accounting.contacts accounting.settings">
     <meta name="xero-redirect-uri" content="https://yuenwailok.github.io/XERO-TEST/">
     <!-- optional -->
@@ -16,7 +16,7 @@
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "https://identity.xero.com/connect/token", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.setRequestHeader("authorization","Basic " + base64encode("961E502F5982463B888CD9B66D530373" + ":" + "02sf7SCSignGR9ZAzoxjjznEahvGJDoRSkiZjb_9aiDRCwvv"));
+        xhr.setRequestHeader("authorization","Basic " + base64encode("41073DCE6A4E41D2888231B7F627CA1E" + ":" + "02sf7SCSignGR9ZAzoxjjznEahvGJDoRSkiZjb_9aiDRCwvv"));
         xhr.send("grant_type=authorization_code&code=xxxxxx&redirect_uri=https://yuenwailok.github.io/XERO-TEST/");      
     </script>
 </html>
